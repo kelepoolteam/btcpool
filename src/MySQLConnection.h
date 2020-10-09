@@ -31,22 +31,18 @@
 #include <atomic>
 #include <thread>
 #include <condition_variable>
+#include <mysql.h>
 
 using std::string;
 using std::vector;
 using std::set;
-
-extern "C" struct st_mysql;
-typedef struct st_mysql MYSQL;
-extern "C" struct st_mysql_res;
-typedef struct st_mysql_res MYSQL_RES;
 
 /**
  * Simple wrapper for MYSQL_RES
  * auto free
  */
 struct MySQLResult {
-  struct st_mysql_res *result;
+  MYSQL_RES *result;
   MySQLResult();
   MySQLResult(MYSQL_RES *result);
   void reset(MYSQL_RES *result);
@@ -108,7 +104,7 @@ protected:
   string password_;
   string dbName_;
 
-  struct st_mysql *conn;
+  MYSQL *conn;
 
 public:
   MySQLConnection(const MysqlConnectInfo &connectInfo);

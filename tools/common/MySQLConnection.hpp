@@ -39,10 +39,6 @@ using std::vector;
 using std::set;
 using namespace std::chrono_literals;
 
-extern "C" struct st_mysql;
-typedef struct st_mysql MYSQL;
-extern "C" struct st_mysql_res;
-typedef struct st_mysql_res MYSQL_RES;
 
 /**
  * Simple wrapper for MYSQL_RES
