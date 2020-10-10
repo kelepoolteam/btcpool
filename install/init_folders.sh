@@ -48,39 +48,12 @@ if [ ! -d "run_jobmaker" ]; then
   cd ..
 fi
 
-# sharelogger
-if [ ! -d "run_sharelogger" ]; then
-  mkdir "run_sharelogger" && cd "run_sharelogger"
-  mkdir "log_sharelogger"
-  ln -s ../sharelogger .
-  cp "$sourceDir"/sharelogger/sharelogger.cfg .
-  cd ..
-fi
-
-# slparser
-if [ ! -d "run_slparser" ]; then
-  mkdir "run_slparser" && cd "run_slparser"
-  mkdir "log_slparser"
-  ln -s ../slparser .
-  cp "$sourceDir"/slparser/slparser.cfg .
-  cd ..
-fi
-
 # sserver
 if [ ! -d "run_sserver" ]; then
   mkdir "run_sserver" && cd "run_sserver"
   mkdir "log_sserver"
   ln -s ../sserver .
   cp "$sourceDir"/sserver/sserver.cfg .
-  cd ..
-fi
-
-# statshttpd
-if [ ! -d "run_statshttpd" ]; then
-  mkdir "run_statshttpd" && cd "run_statshttpd"
-  mkdir "log_statshttpd"
-  ln -s ../statshttpd .
-  cp "$sourceDir"/statshttpd/statshttpd.cfg .
   cd ..
 fi
 

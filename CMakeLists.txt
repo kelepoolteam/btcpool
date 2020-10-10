@@ -555,18 +555,6 @@ target_link_libraries(jobmaker btcpool ${THIRD_LIBRARIES})
 add_executable(sserver src/sserver/StratumServerMain.cc)
 target_link_libraries(sserver btcpool ${THIRD_LIBRARIES})
 
-file(GLOB_RECURSE STATSHTTPD_SOURCES src/statshttpd/*.cc)
-add_executable(statshttpd ${STATSHTTPD_SOURCES})
-target_link_libraries(statshttpd btcpool ${THIRD_LIBRARIES})
-
-file(GLOB_RECURSE SHARELOGGER_SOURCES src/sharelogger/*.cc)
-add_executable(sharelogger ${SHARELOGGER_SOURCES})
-target_link_libraries(sharelogger btcpool ${THIRD_LIBRARIES})
-
-file(GLOB_RECURSE SLPARSER_SOURCES src/slparser/*.cc)
-add_executable(slparser ${SLPARSER_SOURCES})
-target_link_libraries(slparser btcpool ${THIRD_LIBRARIES})
-
 file(GLOB_RECURSE BLKMAKER_SOURCES src/blkmaker/*.cc)
 add_executable(blkmaker ${BLKMAKER_SOURCES})
 target_link_libraries(blkmaker btcpool ${THIRD_LIBRARIES})
@@ -596,11 +584,8 @@ set(INSTALL_TARGETS
         jobmaker
         nmcauxmaker
         poolwatcher
-        sharelogger
         simulator
-        slparser
-        sserver
-        statshttpd)
+        sserver)
 
 if(BUILD_TESTING)
   # testcase
