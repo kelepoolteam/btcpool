@@ -475,7 +475,7 @@ checkBitcoinRPCGetInfo(const string &rpcAddr, const string &rpcUserpass) {
 }
 
 bool checkBitcoinRPC(const string &rpcAddr, const string &rpcUserpass) {
-  return checkBitcoinRPCGetNetworkInfo(rpcAddr, rpcUserpass) 
+  return checkBitcoinRPCGetNetworkInfo(rpcAddr, rpcUserpass);
 //  ||   checkBitcoinRPCGetInfo(rpcAddr, rpcUserpass); // 新版已删除此接口
 }
 
