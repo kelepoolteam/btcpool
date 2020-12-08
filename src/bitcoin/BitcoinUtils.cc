@@ -419,18 +419,26 @@ static bool checkBitcoinRPCGetNetworkInfo(
 
   // check fields & connections
   if (r["result"].type() != Utilities::JS::type::Obj ||
-      r["result"]["connections"].type() != Utilities::JS::type::Int) {
+      r["result"]["size_on_disk"].type() != Utilities::JS::type::Int) {
     LOG(ERROR) << "getnetworkinfo missing some fields";
     return false;
   }
-  if (r["result"]["connections"].int32() <= 0) {
-    LOG(ERROR) << "node connections is zero";
+  if (r["result"]["size_on_disk"].int32() <= 0) {
+    LOG(ERROR) << "node size_on_disk is zero";
     return false;
   }
 
   return true;
 }
 
+/*
+This call was removed in version 0.16.0. Use the appropriate fields from:
+- getblockchaininfo: blocks, difficulty, chain
+- getnetworkinfo: version, protocolversion, timeoffset, connections, proxy, relayfee, warnings
+- getwalletinfo: balance, keypoololdest, keypoolsize, paytxfee, unlocked_until, walletversion
+
+bitcoin-cli has the option -getinfo to collect and format these in the old format.
+*/
 static bool
 checkBitcoinRPCGetInfo(const string &rpcAddr, const string &rpcUserpass) {
   string response;
@@ -467,8 +475,8 @@ checkBitcoinRPCGetInfo(const string &rpcAddr, const string &rpcUserpass) {
 }
 
 bool checkBitcoinRPC(const string &rpcAddr, const string &rpcUserpass) {
-  return checkBitcoinRPCGetNetworkInfo(rpcAddr, rpcUserpass) ||
-      checkBitcoinRPCGetInfo(rpcAddr, rpcUserpass);
+  return checkBitcoinRPCGetNetworkInfo(rpcAddr, rpcUserpass) 
+//  ||   checkBitcoinRPCGetInfo(rpcAddr, rpcUserpass); // 新版已删除此接口
 }
 
 int32_t getBlockHeightFromCoinbase(const string &coinbase1) {
