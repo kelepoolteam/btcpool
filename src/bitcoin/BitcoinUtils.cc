@@ -417,14 +417,15 @@ static bool checkBitcoinRPCGetNetworkInfo(
     return false;
   }
 
+  // regtest 网络connections为0
   // check fields & connections
   if (r["result"].type() != Utilities::JS::type::Obj ||
-      r["result"]["size_on_disk"].type() != Utilities::JS::type::Int) {
+      r["result"]["version"].type() != Utilities::JS::type::Int) {
     LOG(ERROR) << "getnetworkinfo missing some fields";
     return false;
   }
-  if (r["result"]["size_on_disk"].int32() <= 0) {
-    LOG(ERROR) << "node size_on_disk is zero";
+  if (r["result"]["version"].int32() <= 0) {
+    LOG(ERROR) << "node version is zero";
     return false;
   }
 
